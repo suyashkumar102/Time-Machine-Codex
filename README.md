@@ -1,4 +1,4 @@
-# ⚗️ Refactor Codex: The Code Quality Time Machine
+#  Refactor Codex: The Code Quality Time Machine
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
 
-**[🚀 Live Demo](https://codex-refactor-mkjd.vercel.app) | [🔬 Scientific Audit](SCIENTIFIC_AUDIT_REPORT.md)**
+**[ Live Demo](https://codex-refactor-mkjd.vercel.app) | [🔬 Scientific Audit](SCIENTIFIC_AUDIT_REPORT.md)**
 
 *The world's first code quality analyzer with time-travel capabilities. Track how your code evolved across Git commits.*
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 🎯 The Problem
+##  The Problem
 
 Every code quality tool tells you what's wrong with your code **right now**. But they don't answer the most important question:
 
@@ -51,7 +51,7 @@ Built by stitching together incompatible technologies into something **alive**:
 
 ## Features
 
-### ⏰ Time Machine Analysis 
+###  Time Machine Analysis 
 **UNIQUE - No other tool does this.** Track code quality evolution across Git commit history:
 
 - **Historical Timeline** - Quality scores across up to 20 commits
@@ -91,7 +91,7 @@ Overall trend: Improving (+12 points over 6 months)
 - **Step-by-Step Implementation** - Detailed guidance for each refactoring
 - **Parameter Detection** - Automatic identification of function parameters and return values
 
-### 🔌 GitHub Repository Scanner
+###  GitHub Repository Scanner
 **Analyze entire codebases with scientific precision:**
 
 - **Batch Analysis** - Scan up to 30 files simultaneously
@@ -163,7 +163,7 @@ npm run dev
 # 4. Open http://localhost:5173
 ```
 
-### 🔑 API Key Setup (Important!)
+###  API Key Setup (Important!)
 
 The Mr. Smith AI analysis requires a Google Gemini API key:
 
