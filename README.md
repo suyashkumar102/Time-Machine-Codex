@@ -1,178 +1,149 @@
-#  Refactor Codex: The Code Quality Time Machine
+# Refactor Codex: Code Quality Time Machine
 
-<div align="center">
+[Live Demo](https://codex-refactor-mkjd.vercel.app)
 
-![Languages](https://img.shields.io/badge/Languages-JS%20%7C%20TS%20%7C%20Python-blue)
-![MCP Tools](https://img.shields.io/badge/MCP%20Tools-5-purple)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
-
-**[ Live Demo](https://codex-refactor-mkjd.vercel.app) | [🔬 Scientific Audit](SCIENTIFIC_AUDIT_REPORT.md)**
-
-*The world's first code quality analyzer with time-travel capabilities. Track how your code evolved across Git commits.*
-
-</div>
+Analyze how your code quality evolves across Git commits instead of only evaluating its current state.
 
 ---
 
-##  The Problem
+## Problem
 
-Every code quality tool tells you what's wrong with your code **right now**. But they don't answer the most important question:
+Most code quality tools answer:
 
-**"How did my code get this way?"**
+"What is wrong with my code right now?"
 
-**Refactor Codex** is the world's first code analyzer with **time-travel capabilities**. Track quality metrics across Git commit history, identify regressions, and see exactly when technical debt was introduced.
+They do not answer:
 
-### The Architecture
+"When did it start going wrong?"
 
-Built by stitching together incompatible technologies into something **alive**:
+---
+
+## Overview
+
+Refactor Codex analyzes code across Git history to:
+
+- track quality changes over time
+- identify regression-introducing commits
+- understand how technical debt accumulates
+- visualize trends in code quality
+
+It provides a timeline view rather than a single snapshot.
+
+---
+
+## Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│  React Frontend (Vite + React 19)          │
-│  ↓ HTTP/REST                                │
-│  Express Backend (Node.js)                  │
-│  ├─ JavaScript/TypeScript Analyzer (Babel) │
-│  ├─ Python Analyzer (subprocess)            │
-│  ├─ GitHub API Integration                  │
-│  └─ Gemini AI Integration                   │
-│  ↓ stdio                                    │
-│  MCP Server (Python)                        │
-│                                             │                        │
-└─────────────────────────────────────────────┘
+React (Vite)
+   ↓ REST
+Express API (Node.js)
+   ├─ JS/TS Analyzer (Babel AST)
+   ├─ Python Analyzer (ast module)
+   ├─ GitHub API Integration
+   └─ AI Refactoring (Gemini)
+   ↓ stdio
+Python Analysis Service
 ```
 
-**Technologies Stitched Together:**
--  **Python** +  **JavaScript/TypeScript** (dual runtime analysis)
--  **AST Analysis** + **AI-Powered Refactoring** (Babel + Gemini)
--  **MCP Protocol** +  **REST API** +  **React** (three architectures, unified)
--  **Historical Analysis** +  **Real-time Metrics** (Git + GitHub API)
+The system uses language-specific analyzers with a unified scoring layer.
+
 ---
 
 ## Features
 
-###  Time Machine Analysis 
-**UNIQUE - No other tool does this.** Track code quality evolution across Git commit history:
+### Time-Travel Analysis
 
-- **Historical Timeline** - Quality scores across up to 20 commits
-- **Regression Detection** - Pinpoint commits that introduced technical debt
-- **Trend Analysis** - Visualize improvement/decline patterns
-- **Best/Worst Commits** - Identify quality peaks and valleys
-- **Commit-by-Commit Breakdown** - Detailed metrics for each version
-- **Developer Journey** - Track coding skill improvement over time
+- commit-by-commit quality scores
+- regression detection (e.g. sudden drops)
+- trend analysis (improving / declining)
+- best and worst commits
 
-**Real Example:** Analyze `lodash/array.js` over 10 commits:
+Example:
+
 ```
-Commit abc123: Quality dropped 15 points (regression detected)
-Commit def456: Quality improved 8 points (refactoring success)
-Overall trend: Improving (+12 points over 6 months)
+Commit A → Score: 78  
+Commit B → Score: 62 (regression)  
+Commit C → Score: 85 (improvement)
 ```
-
-### 🔬 Multi-Language Code Analysis
-**True multi-language support** - JavaScript, TypeScript, AND Python with scientifically accurate metrics:
-
-- **Quality Score (0-100)** - Weighted combination of complexity, smells, and maintainability
-- **McCabe Cyclomatic Complexity** - Industry-standard metric (M = decision_points + 1)
-- **Toxicity Score (0-100)** - Severity-weighted code smell density
-- **Maintainability Index** - Research-based formula: `MI = 0.5×Q + 0.3×(100-T) + 0.2×(100-5C)`
-- **Technical Debt** - SQALE method: 15min per smell, severity-weighted
-- **Function-Level Analysis** - Detailed breakdown of every function
-- **Code Smell Detection** - 12+ smell types with remediation suggestions
-
-### AI-Powered Refactoring (Google Gemini)
-**Intelligent refactoring suggestions with context:**
-
-- **Extract Function Refactoring** - Identify code blocks that should be separate functions
-- **Before/After Diffs** - Side-by-side comparison with syntax highlighting
-- **Risk Assessment** - Safety ratings (Low/Medium/High risk)
-- **AI Explanations** - Two AI personalities:
-  - **Friendly Assistant** - Encouraging, educational explanations
-  - **Mr. Smith** - Direct, technical analysis for serious issues
-- **Step-by-Step Implementation** - Detailed guidance for each refactoring
-- **Parameter Detection** - Automatic identification of function parameters and return values
-
-###  GitHub Repository Scanner
-**Analyze entire codebases with scientific precision:**
-
-- **Batch Analysis** - Scan up to 30 files simultaneously
-- **Repository Health Score** - Aggregate quality metrics with statistical analysis
-- **Worst Files First** - Prioritized refactoring recommendations
-- **Language Detection** - Automatic JS/TS/Python identification
-- **Rate Limit Handling** - Smart GitHub API management with caching
-- **Smell Density Metrics** - Issues per 1000 lines (industry standard)
-- **Technical Debt Estimation** - Total remediation time across codebase
 
 ---
 
-Every other tool shows you code quality NOW. **We show you the STORY.**
+### Multi-Language Code Analysis
 
-- See how quality evolved over 10+ commits
-- Find the exact commit that introduced tech debt
-- Track your improvement as a developer
-- Visualize your coding journey
+Supports JavaScript, TypeScript, and Python.
 
-**SonarQube costs $$$$ for this. We do it free.**
+Metrics include:
 
-```
-┌─────────────────────────────────────────────┐
-│  React Frontend (JavaScript)                │
-│  ↓ HTTP                                     │
-│  Express Backend (Node.js)                  │
-│  ↓ Child Process                            │
-│  Python Analyzer (Python AST)               │
-│  ↓ stdio                                    │
-│  MCP Server (Python)                        │
-│                                             │
-└─────────────────────────────────────────────┘
-```
+- Cyclomatic Complexity (McCabe), computed from control-flow decision points
+- Quality Score (0–100), based on weighted heuristics
+- Toxicity Score (0–100), based on code smell density
+- Maintainability Score (custom, inspired by Maintainability Index)
+- Technical Debt (SQALE-inspired remediation estimate)
+- Function-level analysis
+- Code smell detection (multiple patterns)
 
-### 3. **Production-Ready, Not Just a Demo**
-- Multi-language support (JS/TS/Python)
-- GitHub API integration with rate limiting
-- Error handling at every layer
-- Batch processing with async operations
-- Extensible architecture
-
-### 4. **Solves Real Problems**
-- Developers spend 60% of time reading code, 40% writing
-- Technical debt costs $3.61 per line of code
-- Code reviews take 4-8 hours per week
-- **Refactor Codex automates the analysis and suggests fixes**
+Note: Some metrics are heuristic and inspired by industry tools rather than exact implementations.
 
 ---
 
+### AI-Assisted Refactoring
 
-### Quick Start
+- extract-function suggestions
+- before/after diffs
+- parameter and return detection
+- heuristic risk assessment
+- natural language explanations
+
+---
+
+### GitHub Repository Scanner
+
+- batch analysis of multiple files
+- repository-level quality scoring
+- prioritization of problematic files
+- rate-limit handling and caching
+- smell density metrics (per 1000 LOC)
+
+---
+
+## What Makes It Different
+
+Most tools analyze code at a single point in time.
+
+Refactor Codex analyzes how code evolves.
+
+This enables:
+
+- identifying when technical debt was introduced
+- tracking improvement over time
+- understanding development patterns
+
+---
+
+## Quick Start
+
 ```bash
-# 1. Setup API Key (REQUIRED for AI features)
+# Backend
 cd backend
 cp .env.example .env
-# Edit .env and add your Gemini API key:
-# GEMINI_API_KEY=your_key_here
-# Get free key: https://aistudio.google.com/app/apikey
+# Add: GEMINI_API_KEY=your_key
 
-# 2. Start backend
 npm install
 npm start
 
-# 3. Start frontend (new terminal)
+# Frontend
 cd frontend
 npm install
 npm run dev
-
-# 4. Open http://localhost:5173
 ```
 
-###  API Key Setup (Important!)
+Open http://localhost:5173
 
-The Mr. Smith AI analysis requires a Google Gemini API key:
+---
 
-1. Get your **FREE** API key: https://aistudio.google.com/app/apikey
-2. Open `backend/.env` file
-3. Add your key: `GEMINI_API_KEY=your_actual_key_here`
-4. Restart the backend server
+## Notes
 
-
-
-
-
+- Designed for JavaScript, TypeScript, and Python codebases
+- Uses AST-based static analysis
+- Combines deterministic metrics with heuristic scoring
+- AI features require a Gemini API key
